@@ -5,6 +5,8 @@ package at.dpe.gotocon2013.bookstore.domainmodel;
 
 import java.io.Serializable;
 
+import org.springframework.data.annotation.Id;
+
 /**
  * @author jurgenma
  *
@@ -18,6 +20,7 @@ public class Book implements Serializable {
 
 	private String title;
 	
+	@Id
 	private String isbn;
 	
 	private String description;
