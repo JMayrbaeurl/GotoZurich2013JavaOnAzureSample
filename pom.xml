@@ -17,7 +17,7 @@
 		<module>bookstore-da</module>
 		<module>bookstore-web</module>
 	</modules>
-	
+
 	<properties>
 		<junit-version>4.11</junit-version>
 		<springframework-version>3.2.1.RELEASE</springframework-version>
@@ -49,4 +49,17 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+
+	<repositories>
+		<repository>
+			<id>jm-internal</id>
+			<url>http://jmmvn.azurewebsites.net/repo/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>
