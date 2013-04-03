@@ -1,6 +1,7 @@
 package at.dpe.gotocon2013.bookstore.web;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -35,7 +36,10 @@ public class BooksController {
 		while(iter.hasNext())
 			books.add(iter.next());
 		
-		model.addAttribute(books);
+		model.addAttribute("BooksList", books);
+		
+		model.addAttribute("now", (new Date()).toString());
+		
 		return "books/list";
     }
 }
