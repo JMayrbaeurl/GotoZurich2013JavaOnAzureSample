@@ -15,6 +15,21 @@ import at.dpe.gotocon2013.bookstore.domainmodel.Book;
 public class InMemoryBookRepositoryImpl implements BookRepository {
 
 	private Map<String, Book> store = new HashMap<>();
+	
+	public InMemoryBookRepositoryImpl() {
+		//
+		// Create a set of dummy-books for the in-memory repository
+		//
+		for (int i = 0; i < 10; i++) {
+			Book b = new Book
+					     (
+					      "Book " + String.valueOf(i),
+					      "ISBN " + String.valueOf(i),
+					      "Some description for this book... Number " + String.valueOf(i)
+					     );
+			this.save(b);
+		}
+	}
 
 	@Override
 	public Iterable<Book> findAll(Sort sort) {

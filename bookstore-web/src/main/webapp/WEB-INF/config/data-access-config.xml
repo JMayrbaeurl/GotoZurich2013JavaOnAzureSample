@@ -1,12 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="
-           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/context 
+           http://www.springframework.org/schema/context/spring-context-3.1.xsd
+           http://www.springframework.org/schema/data/mongo
+           http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
 
-	<bean class="at.dpe.gotocon2013.bookstore.da.impl.InMemoryBookRepositoryImpl">
+	<!-- bean class="at.dpe.gotocon2013.bookstore.da.impl.InMemoryBookRepositoryImpl"> 
+		</bean -->
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:../mongodb.properties"></property>
+	</bean>
+
+	<mongo:db-factory id="mongoDbFactory" 
+	                  dbname="${prod.mongodb.databaseName}"
+		              host="${prod.mongodb.host}" 
+		              port="${prod.mongodb.port}" 
+		              username="${prod.mongodb.username}"
+		              password="${prod.mongodb.password}" />
+
+	<mongo:mongo host="${prod.mongodb.host}" port="${prod.mongodb.port}" />
+
+	<mongo:mapping-converter>
+		<mongo:custom-converters>
+			<mongo:converter ref="bookMongoReadConverter" />
+		</mongo:custom-converters>
+	</mongo:mapping-converter>
+
+	<bean id="bookMongoReadConverter"
+		  class="at.dpe.gotocon2013.bookstore.da.impl.BookMongoReadConverter" />
+
+	<bean id="mongodbUserCredentials" class="org.springframework.data.authentication.UserCredentials">
+		<constructor-arg name="username" value="${prod.mongodb.username}" />
+		<constructor-arg name="password" value="${prod.mongodb.password}" />
+	</bean>
+
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongo" />
+		<constructor-arg name="databaseName" value="${prod.mongodb.databaseName}" />
+		<constructor-arg ref="mongodbUserCredentials" />
+	</bean>
+
+	<bean class="at.dpe.gotocon2013.bookstore.da.impl.MongoDBBookRepositoryImpl">
+		<constructor-arg ref="mongoTemplate" />
 	</bean>
 
 </beans>

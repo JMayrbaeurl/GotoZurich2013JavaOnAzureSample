@@ -21,10 +21,10 @@ public class MongoDBBookRepositoryImpl extends SimpleMongoRepository<Book, Strin
 	 * @param mongoOperations
 	 */
 	public MongoDBBookRepositoryImpl(
-			MongoEntityInformation<Book, String> metadata,
-			MongoOperations mongoOperations) {
-		
-		super(metadata, mongoOperations);
+			/*MongoEntityInformation<Book, String> metadata,*/
+			MongoOperations mongoOperations)
+	{
+		super(new BookMetadata(), mongoOperations);
 	}
 	
 	private static class BookMetadata implements MongoEntityInformation<Book, String> {
@@ -32,37 +32,37 @@ public class MongoDBBookRepositoryImpl extends SimpleMongoRepository<Book, Strin
 		@Override
 		public boolean isNew(Book entity) {
 			// TODO Auto-generated method stub
-			return false;
+			return (entity.getIsbn().length() == 0);
 		}
 
 		@Override
 		public String getId(Book entity) {
 			// TODO Auto-generated method stub
-			return null;
+			return entity.getIsbn();
 		}
 
 		@Override
 		public Class<String> getIdType() {
 			// TODO Auto-generated method stub
-			return null;
+			return String.class;
 		}
 
 		@Override
 		public Class<Book> getJavaType() {
 			// TODO Auto-generated method stub
-			return null;
+			return Book.class;
 		}
 
 		@Override
 		public String getCollectionName() {
 			// TODO Auto-generated method stub
-			return null;
+			return "book";
 		}
 
 		@Override
 		public String getIdAttribute() {
 			// TODO Auto-generated method stub
-			return null;
+			return "Isbn";
 		}
 	}
 }

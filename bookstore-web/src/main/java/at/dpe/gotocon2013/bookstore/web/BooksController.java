@@ -36,7 +36,7 @@ public class BooksController {
 		while(iter.hasNext())
 			books.add(iter.next());
 		
-		model.addAttribute("BooksList", books);
+		model.addAttribute("books", books);
 		
 		model.addAttribute("now", (new Date()).toString());
 		
