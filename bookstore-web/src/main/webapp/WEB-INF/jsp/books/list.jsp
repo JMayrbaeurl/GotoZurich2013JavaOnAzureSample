@@ -13,13 +13,14 @@
 		You are browsing this at <c:out value="${now}" />
 	</p>
 	<h2>List of books in our store:</h2>
-	<table style="border-style: solid; border-color: gray;">
+	<table border="1" style="border-style: solid; border-color: gray;">
 		<thead>
 			<tr>
 				<th>ISBN</th>
 				<th>Title</th>
 				<th>Short Description</th>
 				<th>Rating</th>
+				<th>Image</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,6 +30,16 @@
 					<td><c:out value="${book.title}" /></td>
 					<td><c:out value="${book.description}" /></td>
 					<td><c:out value="${book.rating}" /></td>
+					<td>
+						<c:if test="${ book.imageUrl != null }">
+							<img src="${book.imageUrl}" />
+						</c:if>
+						<c:if test="${ book.imageUrl == null }">
+							<div style="text-align: center;">
+								none
+							</div>
+						</c:if>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
