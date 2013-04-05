@@ -13,9 +13,17 @@
 	<!-- bean class="at.dpe.gotocon2013.bookstore.da.impl.InMemoryBookRepositoryImpl"> 
 		</bean -->
 
+	<!-- Local configuration -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:../mongodb.local.properties"></property>
+	</bean>
+
+	<!-- Cloud-based configuration -->
+	<!-- 
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:../mongodb.properties"></property>
 	</bean>
+	-->
 
 	<mongo:db-factory id="mongoDbFactory" 
 	                  dbname="${prod.mongodb.databaseName}"
