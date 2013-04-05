@@ -28,6 +28,8 @@ public class Book implements Serializable {
 	public enum Rating { VERY_BAD, BAD, AVERAGE, GOOD, EXCELLENT };
 	
 	private Rating rating = Rating.AVERAGE;
+	
+	private String imageUrl;
 
 	/**
 	 * 
@@ -148,4 +150,17 @@ public class Book implements Serializable {
 		this.isbn = isbn;
 	}
 	
+	/**
+	 * @param imageUrl the URL to an image for the book
+	 */
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	/**
+	 * @param imageUrl the URL to an image for the book to set
+	 */
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 }
