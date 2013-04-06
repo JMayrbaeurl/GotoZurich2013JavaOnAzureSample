@@ -34,4 +34,26 @@ public class TestCaseMongoDBBookRepository {
 		
 		this.bookRepository.save(newBook);
 	}
+	
+	@Test
+	public void testInsertMultipleBooks() {
+		
+		Book firstBook = new Book();
+		firstBook.setTitle("Azure in Action");
+		firstBook.setIsbn("978-1935182481");
+		firstBook.setDescription("An essential guide to building scalable cloud applications in the Azure Services Platform, including Windows Azure, SQL Azure and .NET Services");
+		firstBook.setRating(Rating.GOOD);
+		firstBook.setImageUrl("images/AzureInAction.jpg");
+		
+		this.bookRepository.save(firstBook);
+		
+		Book secondBook = new Book();
+		secondBook.setTitle("Programming Windows Azure");
+		secondBook.setIsbn("978-0596801977");
+		secondBook.setDescription("Learn the nuts and bolts of cloud computing with Windows Azure, Microsoft's new Internet services platform");
+		secondBook.setRating(Rating.GOOD);
+		secondBook.setImageUrl("images/ProgrammingWindowsAzure.jpg");
+		
+		this.bookRepository.save(secondBook);
+	}
 }
