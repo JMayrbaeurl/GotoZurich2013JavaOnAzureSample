@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.1.xsd">
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="mongodb.properties"></property>
+	</bean>
+
+	<mongo:mongo host="${test.mongodb.host}" port="${test.mongodb.port}" />
+
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongo" />
+		<constructor-arg name="databaseName" value="${test.mongodb.databaseName}" />
+		<constructor-arg ref="mongodbUserCredentials"></constructor-arg>
+	</bean>
+	
+	<bean id="mongodbUserCredentials" class="org.springframework.data.authentication.UserCredentials">
+		<constructor-arg name="username" value="${test.mongodb.username}"></constructor-arg>
+		<constructor-arg name="password" value="${test.mongodb.password}"></constructor-arg>
+	</bean>
+
+	<mongo:repositories base-package="at.dpe.gotocon2013.bookstore.da" />
+	
+</beans>
