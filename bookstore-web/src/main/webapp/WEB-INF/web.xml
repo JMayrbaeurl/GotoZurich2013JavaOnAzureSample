@@ -29,7 +29,6 @@
 	</filter-mapping>
 
 	<!-- Local ACS configuration -->
-	<!-- 
 	<filter>
 		<filter-name>ACSAuthFilter</filter-name>
 		<filter-class>com.microsoft.windowsazure.web.federation.ACSFederationAuthFilter</filter-class>
@@ -54,8 +53,9 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
-	 -->
+
 	<!-- Cloud based ACS configuration --> 
+	<!-- 
 	<filter>
 		<filter-name>ACSAuthFilter</filter-name>
 		<filter-class>com.microsoft.windowsazure.web.federation.ACSFederationAuthFilter</filter-class>
@@ -80,6 +80,7 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
+	-->
 	
 	<filter-mapping>
 		<filter-name>ACSAuthFilter</filter-name>
