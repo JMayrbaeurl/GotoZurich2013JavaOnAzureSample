@@ -60,6 +60,8 @@
 				<configuration>
 					<excludes>
 						<exclude>**/IntegrationTest*.java</exclude>
+						<exclude>**/TestCaseSimpleMongoDBCalls.java</exclude>
+						<exclude>**/TestCaseMongoDBBookRepository.java</exclude>
 					</excludes>
 				</configuration>
 			</plugin>
