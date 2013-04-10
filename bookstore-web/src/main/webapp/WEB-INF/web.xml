@@ -28,6 +28,7 @@
 		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
 	</filter-mapping>
 
+	<!-- Local ACS configuration -->
 	<filter>
 		<filter-name>ACSAuthFilter</filter-name>
 		<filter-class>com.microsoft.windowsazure.web.federation.ACSFederationAuthFilter</filter-class>
@@ -52,22 +53,39 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
+
+	<!-- Cloud based ACS configuration --> 
+	<!-- 
+	<filter>
+		<filter-name>ACSAuthFilter</filter-name>
+		<filter-class>com.microsoft.windowsazure.web.federation.ACSFederationAuthFilter</filter-class>
+		<init-param>
+			<param-name>PassiveRequestorEndpoint</param-name>
+			<param-value>https://bookstoregotozurich.accesscontrol.windows.net:443/v2/wsfederation?wa=wsignin1.0&amp;wtrealm=http%3a%2f%2fbookstoregotozurich.cloudapp.net%2f</param-value>
+		</init-param>
+		<init-param>
+			<param-name>RelyingPartRealm</param-name>
+			<param-value>http://bookstoregotozurich.cloudapp.net/</param-value>
+		</init-param>
+		<init-param>
+			<param-name>CertificatePath</param-name>
+			<param-value>embedded</param-value>
+		</init-param>
+		<init-param>
+			<param-name>SecretKey</param-name>
+			<param-value>i/URs4+iODQ9zzng+wZvjw==</param-value>
+		</init-param>
+		<init-param>
+			<param-name>AllowHTTP</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	-->
+	
 	<filter-mapping>
 		<filter-name>ACSAuthFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>	
-
-	<!-- Enables Spring Security 
-	<filter>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter>
-    
-    <filter-mapping>
-      <filter-name>springSecurityFilterChain</filter-name>
-      <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
-    </filter-mapping>
-    -->
 
 	<!-- The front controller of this Spring Web application, responsible for handling all application requests -->
 	<servlet>
@@ -85,5 +103,4 @@
 		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
 </web-app>

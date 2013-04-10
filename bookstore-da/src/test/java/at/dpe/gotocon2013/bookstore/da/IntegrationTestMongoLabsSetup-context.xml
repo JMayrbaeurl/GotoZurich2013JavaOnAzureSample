@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.1.xsd">
 
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="mongodb-local.properties"></property>
+		<property name="location" value="mongodb.properties"></property>
 	</bean>
 
 	<mongo:mongo host="${test.mongodb.host}" port="${test.mongodb.port}" />
